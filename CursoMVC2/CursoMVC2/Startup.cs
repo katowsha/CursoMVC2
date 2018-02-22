@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using CursoMVC2.Models;
 
 namespace CursoMVC2
 {
@@ -22,6 +24,9 @@ namespace CursoMVC2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddDbContext<CursoMVC2Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("CursoMVC2Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
